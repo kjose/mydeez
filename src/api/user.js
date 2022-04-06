@@ -12,6 +12,10 @@ const getUser = async (req, res) => {
 
   // get user
   const thisUser = await User.findById(userId);
+  if (!thisUser) {
+    res.status(404).send();
+    return;
+  }
 
   res.send(thisUser);
 };
@@ -20,7 +24,7 @@ const postUser = async (req, res) => {
   const { username, password } = req.body;
 
   // get user
-  const existingUser = User.findOne({ username });
+  const existingUser = await User.findOne({ username });
   if (existingUser) {
     res.status(400).send({ error: 'user already exists' });
     return;

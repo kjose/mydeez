@@ -9,19 +9,22 @@ const { initRedis } = require('./services/redis');
 
 const PORT = 3000;
 
-main().catch((err) => console.log('Fatal error', err));
+main().catch((err) => console.log('Fatal error :', err));
 
 async function main() {
   // mongodb connection
+  console.log("Starting mongodb ...");
   await mongoose.connect(process.env.DB_URL);
 
   // redis connection
+  console.log("Starting redis ...");
   await initRedis();
 
   // start express
   const app = express();
   app.use(express.json());
 
+  // TODO refacto with using express router
   app.get('/users', getUsers);
   app.get('/users/:userId', getUser);
   app.post('/users', postUser);
