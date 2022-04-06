@@ -14,3 +14,8 @@ Song:
 Playlist:
     name
     songs: []
+
+
+examples : 
+find: { "songs.type": "Metal" }
+projection : { songs: { $elemMatch: { type: "Metal" } }, _id: 1 }

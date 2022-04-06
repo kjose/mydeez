@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "nodejs test",
   "main": "index.js",
+  "watch": {
+    "test": "{src,test}/*.js"
+  },
   "scripts": {
-    "start": "watch 'node src/app.js' ./src",
+    "start": "npm-watch run",
+    "run": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier --write ./src"
+    "prettier": "prettier --write ./src",
+    "fixtures": "node src/fixtures.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,8 +21,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
+    "npm-watch": "^0.11.0",
     "prettier": "^2.6.2",
-    "redis": "^4.0.6",
-    "watch": "^1.0.2"
+    "redis": "^4.0.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.1.2"
   }
 }

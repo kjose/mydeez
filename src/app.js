@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const getAlbums = require('./api/album');
 const { login } = require('./api/login');
 const { postPlaylist, getPlaylists } = require('./api/playlist');
 const { postUser, getUsers, getUser, deleteUser } = require('./api/user');
@@ -13,11 +14,11 @@ main().catch((err) => console.log('Fatal error :', err));
 
 async function main() {
   // mongodb connection
-  console.log("Starting mongodb ...");
+  console.log('Starting mongodb ...');
   await mongoose.connect(process.env.DB_URL);
 
   // redis connection
-  console.log("Starting redis ...");
+  console.log('Starting redis ...');
   await initRedis();
 
   // start express
@@ -29,6 +30,7 @@ async function main() {
   app.get('/users/:userId', getUser);
   app.post('/users', postUser);
   app.delete('/users/:userId', deleteUser);
+  app.get('/albums', getAlbums);
 
   app.use('/u/:userId', authMiddleware);
   app.get('/u/:userId/playlists', getPlaylists);

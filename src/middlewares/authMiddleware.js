@@ -1,4 +1,4 @@
-const { decodeToken } = require('../services/jwt');
+const { decodeToken } = require('../helpers/jwt');
 
 const authMiddleware = (req, res, next) => {
   const { userId } = req.params;

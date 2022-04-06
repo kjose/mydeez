@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const { generateAccessToken } = require('../services/jwt');
+const { generateAccessToken } = require('../helpers/jwt');
 
 const login = async (req, res) => {
   const { username, password } = req.body;
