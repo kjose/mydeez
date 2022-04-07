@@ -5,7 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-Api to manage users with playlists and songs from albums
+Api to manage users with playlists and songs from albums.
+
+(It's a boilerplate project) to have basics for node JS).
 
 ## Start the project
 
