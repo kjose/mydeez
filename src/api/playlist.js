@@ -1,6 +1,7 @@
-const Playlist = require('../models/Playlist');
+import { Playlist } from '../models/Playlist';
+import Container from '../services/Container';
 
-const postPlaylist = async (req, res) => {
+export const postPlaylist = async (req, res) => {
   const { userId } = req.params;
   const { name } = req.body;
 
@@ -14,7 +15,7 @@ const postPlaylist = async (req, res) => {
   res.send(newPlaylist);
 };
 
-const getPlaylists = async (req, res) => {
+export const getPlaylists = async (req, res) => {
   const { userId } = req.params;
 
   // get user list
@@ -23,7 +24,20 @@ const getPlaylists = async (req, res) => {
   res.send(playlists);
 };
 
-module.exports = {
-  getPlaylists,
-  postPlaylist,
+export const generatePlaylist = async (req, res) => {
+  const { userId, playlistId } = req.params;
+
+  Container.get('playlistGenerator').generatePlaylist(userId, playlistId);
+
+  res.status(200).send();
+};
+
+export const readPlaylist = async (req, res) => {
+  const { playlistId } = req.params;
+
+  const playlist = await Container.get('playlistGenerator').readPlaylist(
+    playlistId
+  );
+
+  res.send(playlist);
 };

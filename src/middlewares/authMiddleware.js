@@ -1,4 +1,4 @@
-const { decodeToken } = require('../helpers/jwt');
+import { decodeToken } from '../helpers/jwt';
 
 const authMiddleware = (req, res, next) => {
   const { userId } = req.params;
@@ -24,4 +24,4 @@ const authMiddleware = (req, res, next) => {
   next();
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

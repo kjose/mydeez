@@ -1,9 +1,9 @@
-const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const songSchema = new mongoose.Schema({
   type: String,
   name: String,
+  tags: [String],
 });
 
 const albumSchema = new mongoose.Schema({
@@ -13,10 +13,5 @@ const albumSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Song = mongoose.model('Song', songSchema);
-const Album = mongoose.model('Album', albumSchema);
-
-module.exports = {
-  Song,
-  Album,
-};
+export const Song = mongoose.model('Song', songSchema);
+export const Album = mongoose.model('Album', albumSchema);

@@ -1,9 +1,10 @@
-require('dotenv').config();
-const { faker } = require('@faker-js/faker');
-const mongoose = require('mongoose');
-const User = require('./models/User');
-const Playlist = require('./models/Playlist');
-const { Album, Song } = require('./models/Album');
+import { faker } from '@faker-js/faker';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import { Album } from './models/Album';
+import { Playlist } from './models/Playlist';
+import User from './models/User';
+dotenv.config();
 
 main().catch((err) => console.log('Fatal error :', err));
 
@@ -17,13 +18,18 @@ async function main() {
   Playlist.collection.drop();
 
   // generate albums
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 1000; i++) {
     let songs = [];
     for (let i = 0; i < 10; i++) {
+      let tags = [];
+      for (let i = 0; i < 4; i++) {
+        tags.push(faker.random.word());
+      }
       songs.push(
         new Song({
           type: faker.music.genre(),
           name: faker.name.jobTitle(),
+          tags,
         })
       );
     }
@@ -39,9 +45,14 @@ async function main() {
   // generate users
   for (let i = 0; i < 4; i++) {
     const name = faker.name.firstName();
+    let favoriteGenres = [];
+    for (let i = 0; i < 3; i++) {
+      favoriteGenres.push(faker.music.genre());
+    }
     const newUser = new User({
       username: name,
       password: name + '1',
+      favoriteGenres,
     });
     await newUser.save();
 

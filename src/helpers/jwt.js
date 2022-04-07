@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-function generateAccessToken(user) {
+export function generateAccessToken(user) {
   return jwt.sign(
     {
       user,
@@ -10,7 +10,7 @@ function generateAccessToken(user) {
   );
 }
 
-function decodeToken(token) {
+export function decodeToken(token) {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     return decoded;
@@ -18,8 +18,3 @@ function decodeToken(token) {
     return null;
   }
 }
-
-module.exports = {
-  generateAccessToken,
-  decodeToken,
-};

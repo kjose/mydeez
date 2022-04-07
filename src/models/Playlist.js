@@ -1,5 +1,5 @@
-const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose');
+import { ObjectId } from 'mongodb';
+import mongoose from 'mongoose';
 
 const playlistSchema = new mongoose.Schema({
   userId: ObjectId,
@@ -7,6 +7,4 @@ const playlistSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Playlist = mongoose.model('Playlist', playlistSchema);
-
-module.exports = Playlist;
+export const Playlist = mongoose.model('Playlist', playlistSchema);

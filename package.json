@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "nodejs test",
   "main": "index.js",
+  "type": "module",
   "watch": {
-    "test": "{src,test}/*.js"
+    "run": "{src,test}/**/*.js"
   },
   "scripts": {
     "start": "npm-watch run",
-    "run": "node src/app.js",
+    "run": "node --experimental-specifier-resolution=node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier": "prettier --write ./src",
     "fixtures": "node src/fixtures.js"

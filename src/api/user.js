@@ -1,13 +1,13 @@
-const User = require('../models/User');
+import User from '../models/User';
 
-const getUsers = async (req, res) => {
+export const getUsers = async (req, res) => {
   // get user list
   const users = await User.find();
 
   res.send(users);
 };
 
-const getUser = async (req, res) => {
+export const getUser = async (req, res) => {
   const { userId } = req.params;
 
   // get user
@@ -20,7 +20,7 @@ const getUser = async (req, res) => {
   res.send(thisUser);
 };
 
-const postUser = async (req, res) => {
+export const postUser = async (req, res) => {
   const { username, password } = req.body;
 
   // get user
@@ -40,18 +40,11 @@ const postUser = async (req, res) => {
   res.send(newUser);
 };
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   const { userId } = req.params;
 
   // delete user
   await User.deleteOne({ _id: userId });
 
   res.status(204).send();
-};
-
-module.exports = {
-  postUser,
-  getUsers,
-  getUser,
-  deleteUser,
 };

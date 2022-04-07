@@ -1,11 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const ROLE_ADMIN = 'ROLE_ADMIN';
-const ROLE_USER = 'ROLE_USER';
+export const ROLE_ADMIN = 'ROLE_ADMIN';
+export const ROLE_USER = 'ROLE_USER';
 
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
+  favoriteGenres: [String],
   role: { type: String, default: ROLE_USER },
   active: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
@@ -13,9 +14,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
-
-exports = {
-  ROLE_ADMIN,
-  ROLE_USER,
-};
+export default User;

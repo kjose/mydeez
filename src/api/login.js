@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const { generateAccessToken } = require('../helpers/jwt');
+import { generateAccessToken } from '../helpers/jwt';
+import User from '../models/User';
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   const { username, password } = req.body;
 
   const user = await User.findOne({ username: username });
@@ -16,8 +16,4 @@ const login = async (req, res) => {
   res.send({
     access_token: generateAccessToken(user),
   });
-};
-
-module.exports = {
-  login,
 };
